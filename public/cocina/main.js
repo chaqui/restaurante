@@ -2,12 +2,15 @@ var socket = io.connect('http://localhost:3000', { 'forceNew': true });
 
 function render(data) {
 	var html = data.map(function(elem, index){
-
-    	return(`<div>
+			console.log(elem)
+    	return(`<div class="card"  style="width: 18rem;">
+						<div class="card-body">
         		 <strong>Normales:</strong>  <em>${elem.normales}</em>
               <strong>Infantiles:</strong>  <em>${elem.infantiles}</em>
               <strong>Llevar:</strong>  <em>${elem.llevar}</em>
-        </div>`)
+        </div>
+				</div>
+	 </div>`)
     }).join(" ");
 
     document.getElementById('platos').innerHTML = html;
