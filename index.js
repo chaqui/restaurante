@@ -5,7 +5,7 @@ app.use(express.static('public'));
 
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
-
+var pedidos = new Array()
 server.listen(3000, function() {
 	console.log('Servidor corriendo en http://localhost:3000');
 });
@@ -13,10 +13,9 @@ server.listen(3000, function() {
 io.on('connection', function(socket) {
   console.log('un cliente se a conectado')
   socket.emit('bien venido')
+	socket.on('nuevo-pedido', function(data) {
+		pedidos.push(data);
+		console.log(data)
+		io.sockets.emit('messages', pedidos);
+	});
 })
-
-io.on('nuevo-pedido', function(data) {
-	messages.push(data);
-
-	io.sockets.emit('messages', messages);
-});

@@ -10,7 +10,7 @@ function render(data) {
         </div>`)
     }).join(" ");
 
-    document.getElementById('messages').innerHTML = html;
+    document.getElementById('platos').innerHTML = html;
 }
 
 socket.on('messages', function(data) {
