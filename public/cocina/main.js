@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:3000/cocina', { 'forceNew': true });
+var socket = io.connect('http://localhost:3000/cocinaspace', { 'forceNew': true });
 
 function render(data) {
 	var html = data.map(function(elem, index){
