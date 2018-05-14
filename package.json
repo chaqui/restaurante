@@ -1,0 +1,15 @@
+{
+  "name": "restarante_chaqui",
+  "version": "0.5.0",
+  "description": "Aplicacion para restaurante",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mysql": "^2.15.0"
+  }
+}
