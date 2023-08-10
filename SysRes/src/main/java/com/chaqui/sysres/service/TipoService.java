@@ -28,17 +28,15 @@ public class TipoService {
      * @param descriminador descriminador a buscar
      * @return lista de tipos
      */
-    public List<TipoDto> getTipos(String descriminador) {
+    public List<TipoDto.Response> getTipos(String descriminador) {
         List<Tipo> tipos = tipoRepository.findByDescriminador(descriminador);
         if (CollectionUtils.isEmpty(tipos)) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "No se encontraron tipos"
             );
         }
-        List<TipoDto> dtos = tipos.stream().map(tipo -> {
-            return modelMapper.map(tipo, TipoDto.class);
+        return tipos.stream().map(tipo -> {
+            return modelMapper.map(tipo, TipoDto.Response.class);
         }).toList();
-
-        return dtos;
     }
 }

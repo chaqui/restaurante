@@ -4,7 +4,9 @@ import com.chaqui.sysres.model.Tipo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-
+/**
+ * Repositorio de tipos
+ */
 public interface TipoRepository extends JpaRepository<Tipo, Integer> {
 
     /**

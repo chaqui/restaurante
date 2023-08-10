@@ -27,7 +27,7 @@ public class TipoController {
     @ResponseBody
     @GetMapping(value = "/descriminador/{descriminador}")
     @ApiOperation(value = "Consulta los tipos por descriminador")
-    public List<TipoDto> obtenerPorDescriminador(@ApiParam(value = "Descriminador de tipos a consultar") @PathVariable String descriminador) {
+    public List<TipoDto.Response> obtenerPorDescriminador(@ApiParam(value = "Descriminador de tipos a consultar") @PathVariable String descriminador) {
         return tipoService.getTipos(descriminador);
     }
 }
