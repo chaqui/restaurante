@@ -9,10 +9,10 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=jdbc:postgresql://db:5432/SR
-      - DATABASE_USERNAME=SR
-      - DATABASE_PASSWORD=u!zEV2NY!k22tWk5
-      - JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/SR
+      - SPRING_DATASOURCE_USERNAME=SR
+      - SPRING_DATASOURCE_PASSWORD=u!zEV2NY!k22tWk5
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     networks:
       - networks_container
     ports:
