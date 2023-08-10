@@ -32,7 +32,7 @@ CREATE TABLE "SR"."Tipo" (
   "id" integer PRIMARY KEY,
   "Nombre" varchar,
   "Descriminador" varchar,
-  "anotacion" varchar
+  "Anotacion" varchar
 );
 
 ALTER TABLE "SR"."Producto" ADD FOREIGN KEY ("id_tipo") REFERENCES "SR"."Tipo" ("id");
