@@ -8,18 +8,18 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Tipo")
+@Table(name = "tipo")
 public class Tipo {
     @Id
-    @Column(name = "id_tipo")
+    @Column(name = "id")
     private Integer id;
 
-    @Column(name = "Nombre")
+    @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "Descriminador")
+    @Column(name = "descriminador")
     private String descriminador;
 
-    @Column(name = "Anotacion")
+    @Column(name = "anotacion")
     private String anotacion;
 }

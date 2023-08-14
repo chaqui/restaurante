@@ -12,25 +12,37 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/SR
       - SPRING_DATASOURCE_USERNAME=SR
       - SPRING_DATASOURCE_PASSWORD=u!zEV2NY!k22tWk5
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     networks:
       - networks_container
     ports:
       - 8080:8080
   db:
-    image: 'postgres:13.1-alpine'
+    image: 'postgres:latest'
+    restart: always
     hostname: db
-    build:
-      context: ./db
     container_name: db
     volumes:
-      - restauranteChaquiVol:/var/lib/postgresql
+      - postgres_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=SR
       - POSTGRES_PASSWORD=u!zEV2NY!k22tWk5
       - POSTGRES_DB=SR
+      - DATABASE_HOST= 127.0.0.1
     ports:
       - 5432:5432
+    networks:
+      - networks_container
+  pgadmin:
+    image: 'dpage/pgadmin4:latest'
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=josue.chaqui@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=u!zEV2NY!k22tWk5
+      - PGADMIN_LISTEN_PORT=80
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
     networks:
       - networks_container
 networks:
@@ -39,5 +51,5 @@ networks:
       config:
         - subnet: 172.21.0.0/16
 volumes:
-    restauranteChaquiVol:
+    postgres_data:
         driver: local

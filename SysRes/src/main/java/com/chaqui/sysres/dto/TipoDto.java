@@ -12,6 +12,8 @@ public class TipoDto {
      */
     @Data
     public static class Response{
+
+        private Integer id;
         private String nombre;
         private String descriminador;
         private String anotacion;
