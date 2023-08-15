@@ -26,6 +26,7 @@ public class TipoController {
      * @return lista de tipos
      */
     @ResponseBody
+    @GetMapping
     @ApiOperation(value = "Consulta los tipos por descriminador")
     public List<TipoDto.Response> obtenerPorDescriminador(
             @ApiParam(value = "Descriminador de tipos a consultar")

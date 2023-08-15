@@ -2,10 +2,12 @@ package com.chaqui.sysres.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "comanda")
+@NoArgsConstructor
 public class Comanda {
     @Id
     @Column(name = "id")
@@ -21,4 +23,9 @@ public class Comanda {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estado")
     private Tipo estado;
+
+    public Comanda(Tipo mesa, Tipo estado) {
+        this.mesa = mesa;
+        this.estado = estado;
+    }
 }

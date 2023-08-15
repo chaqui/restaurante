@@ -7,10 +7,12 @@ import com.chaqui.sysres.model.Tipo;
 import com.chaqui.sysres.repository.ProductoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductoService {
@@ -39,11 +41,17 @@ public class ProductoService {
      * @param productoDto producto a guardar
      */
     public void guardarProducto(ProductoDto.Request productoDto) {
-        Tipo tipo = tipoService.getTipo(productoDto.getIdTipo());
+        Tipo tipo = this.tipoService.getTipo(productoDto.getIdTipo());
 
+        Optional<Producto> productoOptional = this.obtenerProductoPorNombre(productoDto.getNombre());
+        if (productoOptional.isPresent()) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "Ya existe un producto con ese nombre"
+            );
+        }
         if (!Descriminadores.PRODUCTO.equals(tipo.getDescriminador())) {
             throw new ResponseStatusException(
-                    org.springframework.http.HttpStatus.BAD_REQUEST, "El tipo no es un producto"
+                    HttpStatus.BAD_REQUEST, "El tipo no es un producto"
             );
         }
         Producto producto = new Producto(productoDto, tipo);
@@ -73,7 +81,11 @@ public class ProductoService {
      */
     public Producto obtenerProducto(Integer idProducto) {
         return productoRepository.findById(idProducto).orElseThrow(() -> new ResponseStatusException(
-                org.springframework.http.HttpStatus.NOT_FOUND, "No se encontro el producto"
+                HttpStatus.NOT_FOUND, "No se encontro el producto"
         ));
+    }
+
+    public Optional<Producto> obtenerProductoPorNombre(String nombre) {
+        return productoRepository.findByNombre(nombre);
     }
 }

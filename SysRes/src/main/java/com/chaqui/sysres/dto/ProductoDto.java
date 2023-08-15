@@ -2,6 +2,8 @@ package com.chaqui.sysres.dto;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 public class ProductoDto {
 
     /**
@@ -12,7 +14,7 @@ public class ProductoDto {
         private Integer idTipo;
         private String nombre;
         private String comentario;
-        private Number precio;
+        private BigDecimal precio;
     }
 
     /**
@@ -23,6 +25,6 @@ public class ProductoDto {
         private Integer id;
         private String nombre;
         private String comentario;
-        private Number precio;
+        private BigDecimal precio;
     }
 }

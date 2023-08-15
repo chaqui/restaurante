@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @Entity
 @Table(name = "producto")
@@ -21,7 +23,7 @@ public class Producto {
     private String comentario;
 
     @Column(name = "total")
-    private Number precio;
+    private BigDecimal precio;
     @ManyToOne
     @JoinColumn(name = "id_tipo")
     private Tipo tipo;

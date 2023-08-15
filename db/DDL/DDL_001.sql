@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS cuenta_producto (
 );
 
 CREATE TABLE IF NOT EXISTS producto (
-  id integer PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   total numeric(6,2),
   nombre varchar,
   comentario varchar,
