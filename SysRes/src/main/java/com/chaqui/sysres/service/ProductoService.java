@@ -67,9 +67,9 @@ public class ProductoService {
     public List<ProductoDto.Response> obtenerProductos(Integer idTipo) {
         Tipo tipo = tipoService.getTipo(idTipo);
         List<Producto> productos = productoRepository.findByTipo(tipo.getId());
-        return productos.stream().map(producto -> {
-            return modelMapper.map(producto, ProductoDto.Response.class);
-        }).toList();
+        return productos.stream().map(producto ->
+                modelMapper.map(producto, ProductoDto.Response.class)
+        ).toList();
     }
 
 

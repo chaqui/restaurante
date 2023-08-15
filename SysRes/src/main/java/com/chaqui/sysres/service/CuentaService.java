@@ -4,7 +4,6 @@ import com.chaqui.sysres.dto.CuentaDto;
 import com.chaqui.sysres.misc.EstadosComanda;
 import com.chaqui.sysres.model.Comanda;
 import com.chaqui.sysres.model.Cuenta;
-import com.chaqui.sysres.model.CuentaProducto;
 import com.chaqui.sysres.repository.CuentaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class CuentaService {
      */
     public void crearCuenta(CuentaDto.Request request) {
         Comanda comanda = this.comandaService.obtenerComanda(request.getIdComanda());
-        if (comanda.getEstado().getId() != EstadosComanda.ABIERTA) {
+        if (!Objects.equals(comanda.getEstado().getId(), EstadosComanda.ABIERTA)) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "La comanda no esta abierta"
             );
@@ -53,7 +52,7 @@ public class CuentaService {
     public void cerrarCuenta(Integer idCuenta) {
         Cuenta cuenta = this.obtenerCuenta(idCuenta);
         Comanda comanda = cuenta.getComanda();
-        if (comanda.getEstado().getId() != EstadosComanda.ABIERTA) {
+        if (!Objects.equals(comanda.getEstado().getId(), EstadosComanda.ABIERTA)) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "La comanda no esta abierta"
             );

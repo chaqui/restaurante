@@ -1,10 +1,13 @@
 package com.chaqui.sysres.dto;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Clase que representa el objeto Tipo
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TipoDto {
 
     /**

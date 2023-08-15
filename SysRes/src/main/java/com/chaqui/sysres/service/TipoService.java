@@ -35,13 +35,14 @@ public class TipoService {
                     HttpStatus.NOT_FOUND, "No se encontraron tipos"
             );
         }
-        return tipos.stream().map(tipo -> {
-            return modelMapper.map(tipo, TipoDto.Response.class);
-        }).toList();
+        return tipos.stream().map(tipo ->
+                modelMapper.map(tipo, TipoDto.Response.class)
+        ).toList();
     }
 
     /**
      * Obtiene un tipo por su id, solo usar de forma interna, no exponer en el controlador
+     *
      * @param idTipo id del tipo a buscar
      * @return tipo encontrado
      */

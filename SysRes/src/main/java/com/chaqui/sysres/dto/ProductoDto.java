@@ -1,9 +1,11 @@
 package com.chaqui.sysres.dto;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProductoDto {
 
     /**
