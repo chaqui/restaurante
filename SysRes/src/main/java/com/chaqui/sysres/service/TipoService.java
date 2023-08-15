@@ -39,4 +39,15 @@ public class TipoService {
             return modelMapper.map(tipo, TipoDto.Response.class);
         }).toList();
     }
+
+    /**
+     * Obtiene un tipo por su id, solo usar de forma interna, no exponer en el controlador
+     * @param idTipo id del tipo a buscar
+     * @return tipo encontrado
+     */
+    public Tipo getTipo(Integer idTipo) {
+        return tipoRepository.findById(idTipo).orElseThrow(() -> new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "No se encontro el tipo"
+        ));
+    }
 }

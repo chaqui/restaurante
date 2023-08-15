@@ -5,6 +5,7 @@ import com.chaqui.sysres.service.TipoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +26,11 @@ public class TipoController {
      * @return lista de tipos
      */
     @ResponseBody
-    @GetMapping(value = "/descriminador/{descriminador}")
     @ApiOperation(value = "Consulta los tipos por descriminador")
-    public List<TipoDto.Response> obtenerPorDescriminador(@ApiParam(value = "Descriminador de tipos a consultar") @PathVariable String descriminador) {
+    public List<TipoDto.Response> obtenerPorDescriminador(
+            @ApiParam(value = "Descriminador de tipos a consultar")
+            @RequestParam(required = true)
+            @NotNull(message = "Debe especificar el tipo de producto") String descriminador) {
         return tipoService.getTipos(descriminador);
     }
 }

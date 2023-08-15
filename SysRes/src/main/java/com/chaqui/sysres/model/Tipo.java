@@ -22,4 +22,5 @@ public class Tipo {
 
     @Column(name = "anotacion")
     private String anotacion;
+
 }

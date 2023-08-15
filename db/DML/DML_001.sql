@@ -4,4 +4,7 @@ INSERT INTO tipo(id, Nombre,descriminador,anotacion) VALUES (3, 'Pagada', 'estad
 
 INSERT INTO tipo(id, Nombre,descriminador,anotacion) VALUES (4, 'Arbolito', 'mesa', 'Mesa que se encuentra en el cuarto');
 INSERT INTO tipo(id, Nombre,descriminador,anotacion) VALUES (5, 'Tronco', 'mesa', 'Mesa que se encuentra en el tronco');
+
+INSERT INTO tipo(id, Nombre,descriminador,anotacion) VALUES (6, 'Comida', 'tipoProducto', 'Productos para comer');
+INSERT INTO tipo(id, Nombre,descriminador,anotacion) VALUES (7, 'Bebida', 'tipoProducto', 'Productos para beber');
 commit;

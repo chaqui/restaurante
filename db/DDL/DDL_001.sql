@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS comanda (
 
 CREATE TABLE IF NOT EXISTS cuenta (
   id integer PRIMARY KEY,
-  id_producto integer,
   id_comanda integer,
   total numeric(8,2)
 );

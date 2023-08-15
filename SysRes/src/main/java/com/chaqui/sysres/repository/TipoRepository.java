@@ -2,11 +2,13 @@ package com.chaqui.sysres.repository;
 
 import com.chaqui.sysres.model.Tipo;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 /**
  * Repositorio de tipos
  */
+@Repository
 public interface TipoRepository extends JpaRepository<Tipo, Integer> {
 
     /**

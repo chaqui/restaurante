@@ -15,7 +15,6 @@ public class TipoDto {
 
         private Integer id;
         private String nombre;
-        private String descriminador;
         private String anotacion;
     }
 }
