@@ -1,21 +1,23 @@
 version: '3.1'
 
 services:
-  app:
+  #servicio de backend para la aplicación sys res 
+  app-core:
+    container_name: app-core
     image: 'docker-spring-boot-postgres:latest'
     build:
       context: ./SysRes
-    container_name: SysRes
     depends_on:
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/SR
-      - SPRING_DATASOURCE_USERNAME=SR
-      - SPRING_DATASOURCE_PASSWORD=u!zEV2NY!k22tWk5
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
     networks:
       - networks_container
     ports:
       - 8080:8080
+  #servicio que contiene toda la base de datos para la aplicación sys res 
   db:
     image: 'postgres:latest'
     restart: always
@@ -24,20 +26,21 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=SR
-      - POSTGRES_PASSWORD=u!zEV2NY!k22tWk5
-      - POSTGRES_DB=SR
-      - DATABASE_HOST= 127.0.0.1
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - DATABASE_HOST=${DATABASE_HOST}
     ports:
       - 5432:5432
     networks:
       - networks_container
+  #servicio que despliegua el gestor de la base de datos 
   pgadmin:
     image: 'dpage/pgadmin4:latest'
     container_name: pgadmin
     environment:
-      - PGADMIN_DEFAULT_EMAIL=josue.chaqui@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=u!zEV2NY!k22tWk5
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
       - PGADMIN_LISTEN_PORT=80
     ports:
       - "5050:80"
@@ -45,6 +48,14 @@ services:
       - db
     networks:
       - networks_container
+  #servicio que despliegua el frontend de la aplicación sys res 
+  angular-app:
+    build:
+      context: ./sysres_frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      - app-core
 networks:
   networks_container:
     ipam:
