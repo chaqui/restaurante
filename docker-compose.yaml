@@ -53,7 +53,7 @@ services:
     build:
       context: ./sysres_frontend
     ports:
-      - "8081:80"
+      - "8082:80"
     depends_on:
       - app-core
 networks:

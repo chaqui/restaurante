@@ -7,6 +7,7 @@ import com.chaqui.sysres.model.Cuenta;
 import com.chaqui.sysres.repository.CuentaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,9 +23,11 @@ public class CuentaService {
     @Autowired
     private ComandaService comandaService;
 
-    @Autowired
     private CuentaProductoService cuentaProductoService;
-
+    @Autowired
+    public void setCuentaProductoService(@Lazy CuentaProductoService cuentaProductoService) {
+        this.cuentaProductoService = cuentaProductoService;
+    }
     @Autowired
     private ModelMapper modelMapper;
 
