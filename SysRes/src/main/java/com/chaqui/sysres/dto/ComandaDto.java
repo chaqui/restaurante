@@ -12,4 +12,11 @@ public class ComandaDto {
     public static class Request{
         private Integer idMesa;
     }
+
+    @Data
+    public static class Response{
+        private Integer id;
+        private Integer idMesa;
+        private String estado;
+    }
 }
