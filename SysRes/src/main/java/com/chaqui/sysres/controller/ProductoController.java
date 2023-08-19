@@ -2,9 +2,9 @@ package com.chaqui.sysres.controller;
 
 import com.chaqui.sysres.dto.ProductoDto;
 import com.chaqui.sysres.service.ProductoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(tags = "producto")
+@Tag(name = "producto")
 @RestController
 @RequestMapping("/productos")
 public class ProductoController {
@@ -26,7 +26,7 @@ public class ProductoController {
      * @param request datos del producto a crear
      */
     @PostMapping
-    @ApiOperation(value = "Crea un producto", notes = "Crea un producto en el sistema")
+    @Operation(summary = "Crea un producto")
     @ResponseStatus(code = HttpStatus.OK, reason = "Producto creado")
     public void crearProducto(@RequestBody ProductoDto.Request request) {
         this.productoService.guardarProducto(request);
@@ -40,8 +40,8 @@ public class ProductoController {
      */
     @ResponseBody
     @GetMapping
-    @ApiOperation(value = "Consulta los tipos por descriminador")
-    public List<ProductoDto.Response> obtenerProductos(@ApiParam(value = "Descriminador de tipos a consultar")
+    @Operation(summary =  "Consulta los tipos por descriminador")
+    public List<ProductoDto.Response> obtenerProductos(@Parameter(name = "idTipo", description = "Id del tipo de producto a consultar")
                                                            @RequestParam(required = true)
                                                            @NotNull(message = "Debe especificar el tipo de producto")Integer idTipo) {
         return productoService.obtenerProductos(idTipo);

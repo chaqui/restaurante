@@ -1,5 +1,6 @@
 package com.chaqui.sysres.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 public class CuentaProductoDto {
 
     @Data
+    @Schema(description = "Objeto con la información de solicitud de la Cuenta")
     public static class Request{
         private Integer idProducto;
         private Integer idCuenta;
